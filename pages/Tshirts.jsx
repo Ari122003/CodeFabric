@@ -5,7 +5,7 @@ export default function Tshirts() {
 		<section className="text-black body-font mx-10">
 			<div className="container px-5 py-24 mx-auto">
 				<div className="flex flex-wrap -m-4">
-					<div className="lg:w-1/4 md:w-1/2 p-4 w-full product  ">
+					<div className="lg:w-1/4 md:w-1/2 p-4 w-full product">
 						<a className="block relative rounded overflow-hidden">
 							<img
 								alt="ecommerce"

@@ -1,6 +1,6 @@
 import React from "react";
 
-export default function Panjabi() {
+export default function Saree() {
 	return (
 		<section className="text-black body-font mx-10">
 			<div className="container px-5 py-24 mx-auto">

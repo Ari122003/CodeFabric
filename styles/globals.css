@@ -4,26 +4,30 @@
 
 .but {
 	background-color: white;
-	color:#54022e;
+	color: #8b008b;
 	transition: all ease 0.5s;
-    font-weight: 600;
+	font-weight: 600;
 }
-.hedu{
-    background-color: #a10559;
+.hedu {
+	background-color: #8b008b;
+}
+.heding {
+	color: #8b008b;
 }
 
 .but:hover {
-	box-shadow: 8px 8px 0px #54022e;
+	box-shadow: 8px 8px 0px #460146;
 }
 .navs {
 	cursor: pointer;
 }
 
 .navs:hover {
-	color: #f0bbd7b3;
+	/* color: #e6c2e6; */
+	color:#430843;
 }
-.icon{
-    color: white;
+.icon {
+	color: white;
 }
 
 .icon:hover {
@@ -33,6 +37,12 @@
 .product {
 	box-shadow: 20px 20px 60px rgba(0, 0, 0, 0.237),
 		inset -20px -20px 60px rgba(255, 255, 255, 0.253);
+}
 
-
+.select {
+	background-color: #8b008b;
+}
+.option {
+	background-color: white;
+	color: #8b008b;
 }
