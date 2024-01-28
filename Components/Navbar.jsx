@@ -10,7 +10,7 @@ export default function Navbar() {
 		router.push(`/${e.target.value}`);
 	};
 	return (
-		<header className="text-white body-font shadow-2xl hedu">
+		<header className="text-white body-font shadow-2xl hedu sticky top-0 z-10">
 			<div className="container mx-auto flex flex-wrap p-2 flex-col md:flex-row  items-center">
 				<a className="flex title-font font-medium items-center text-gray-900 mb-4 md:mb-0">
 					<div className="w-14 h-14 p-2 rounded-full" viewBox="0 0 24 24">
@@ -42,10 +42,14 @@ export default function Navbar() {
 						<option className="option">Mugs</option>
 					</select>
 				</nav>
-				<FaCartPlus className="mx-5 h-8 w-8 md:mt-1 mt-5 icon" />
-				<button className="inline-flex items-center but border-0 py-1 px-3 focus:outline-none rounded text-base mt-4 md:mt-0 md:mr-5">
-					Button
-				</button>
+				<Link href="/Cart">
+					<FaCartPlus className="mx-5 h-8 w-8 md:mt-1 mt-5 icon" />
+				</Link>
+				<Link href="/Login">
+					<button className="inline-flex items-center but border-0 py-1 px-3 focus:outline-none rounded text-base mt-4 md:mt-0 md:mr-5">
+						Sign in
+					</button>
+				</Link>
 			</div>
 		</header>
 	);

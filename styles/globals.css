@@ -24,7 +24,7 @@
 
 .navs:hover {
 	/* color: #e6c2e6; */
-	color:#430843;
+	color: #430843;
 }
 .icon {
 	color: white;
@@ -36,7 +36,7 @@
 
 .product {
 	box-shadow: 20px 20px 60px rgba(0, 0, 0, 0.237),
-		inset -20px -20px 60px rgba(255, 255, 255, 0.253);
+		inset -20px -20px 60px rgba(255, 255, 255, 0.148);
 }
 
 .select {
@@ -45,4 +45,11 @@
 .option {
 	background-color: white;
 	color: #8b008b;
+}
+.buto {
+	background-color: #8b008b;
+	color: white;
+}
+.buto:hover {
+   background-color: #db54db;
 }

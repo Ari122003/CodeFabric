@@ -5,8 +5,8 @@ export default function Footer() {
 	return (
 		<footer class="text-white hedu body-font">
 			<div class="container md:px-20 py-24 mx-auto flex md:items-center lg:items-start md:flex-row md:flex-nowrap flex-wrap flex-col">
-				<div class="w-64 flex-shrink-0 md:mx-0 mx-auto text-center md:text-left">
-					<Image src="/logo.jpg" height={200} width={200} alt="logo" />
+				<div class="w-64 flex-shrink-0 md:mx-0 mx-auto text-center md:text-left justify-center">
+					<Image src="/logo.jpg" height={200} width={200} alt="logo" className="inline"/>
 				</div>
 				<div class="flex-grow flex flex-wrap md:pl-20 -mb-10 md:mt-0 mt-10 md:text-left text-center">
 					<div class="lg:w-1/4 md:w-1/2 w-full px-4">
