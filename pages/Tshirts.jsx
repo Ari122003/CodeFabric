@@ -5,32 +5,61 @@ import Product from "@/Models/ProductSchema";
 
 export default function Tshirts(props) {
 	const products = props.Products;
+	console.log(products);
 	return (
 		<section className="text-black body-font mx-10 ">
-			<div className="container px-5 py-24 mx-auto ">
-				<div className="flex flex-wrap -m-4 gap-3 ">
-					{products.map((item) => {
+			<div className="container px-5 py-24 mx-auto">
+				<div className="flex flex-wrap -m-4 gap-36">
+					{Object.keys(products).map((item) => {
 						return (
 							<Link
-								key={item._id}
-								href="/Products/Tshirts"
-								className="lg:w-1/4 md:w-1/2 p-4 w-full product rounded-xl">
+								key={products[item]._id}
+								href={`/Products/${products[item].Slug}`}
+								className="lg:w-1/4 md:w-1/2 p-4 w-full rounded-xl product">
 								<div>
-									<a className="block relative rounded overflow-hidden">
+									<div className="block relative rounded overflow-hidden">
 										<img
 											alt="ecommerce"
-											className="h-[50vh] block"
-											src={item.Image}
+											className="h-[50vh] block mx-auto"
+											src={products[item].Image}
 										/>
-									</a>
+									</div>
 									<div className="mt-4">
 										<h3 className="text-gray-500 text-xs tracking-widest title-font mb-1">
-											{item.Category}
+											{products[item].Category}
 										</h3>
 										<h2 className="text-gray-900 title-font text-lg font-medium">
-											{item.Title}
+											{products[item].Title}
 										</h2>
-										<p className="mt-1">{item.Price}</p>
+										<p className="mt-1">₹{products[item].Price}</p>
+
+										<div className="mt-1">
+											{products[item].Size.includes("S") && (
+												<span className="border border-gray-500 px-2 mx-1">
+													S
+												</span>
+											)}
+											{products[item].Size.includes("M") && (
+												<span className="border border-gray-500 px-2 mx-1">
+													M
+												</span>
+											)}
+											{products[item].Size.includes("L") && (
+												<span className="border border-gray-500 px-2 mx-1">
+													L
+												</span>
+											)}
+											{products[item].Size.includes("XL") && (
+												<span className="border border-gray-500 px-2 mx-1">
+													XL
+												</span>
+											)}
+											{products[item].Size.includes("XXL") && (
+												<span className="border border-gray-500 px-2 mx-1">
+													XXL
+												</span>
+											)}
+										</div>
 									</div>
 								</div>
 							</Link>
@@ -49,5 +78,26 @@ export async function getServerSideProps() {
 
 	const products = await Product.find({ Category: "Tshirt" }).exec();
 
-	return { props: { Products: JSON.parse(JSON.stringify(products)) } };
+	const tshirts = {};
+
+	for (let item of products) {
+		if (item.Title in tshirts) {
+			if (!tshirts[item.Title].Colour.includes(item.Colour) && item.Stock > 0) {
+				tshirts[item.Title].Colour.push(item.Colour);
+			}
+			if (!tshirts[item.Title].Size.includes(item.Size) && item.Stock > 0) {
+				tshirts[item.Title].Size.push(item.Size);
+			}
+		} else {
+			tshirts[item.Title] = JSON.parse(JSON.stringify(item));
+
+			if (item.Stock > 0) {
+				tshirts[item.Title].Colour = [item.Colour];
+				tshirts[item.Title].Size = [item.Size];
+			}
+		}
+	}
+	console.log(tshirts)
+
+	return { props: { Products: JSON.parse(JSON.stringify(tshirts)) } };
 }

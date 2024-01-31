@@ -35,8 +35,7 @@
 }
 
 .product {
-	box-shadow: 20px 20px 60px rgba(0, 0, 0, 0.237),
-		inset -20px -20px 60px rgba(255, 255, 255, 0.148);
+	box-shadow: 31px 31px 49px #b5b5b5, -31px -31px 49px #ffffff;
 }
 
 .select {
@@ -51,5 +50,5 @@
 	color: white;
 }
 .buto:hover {
-   background-color: #db54db;
+	background-color: #db54db;
 }
