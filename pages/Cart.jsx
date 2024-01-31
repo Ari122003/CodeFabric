@@ -1,6 +1,11 @@
-import React from "react";
+import React, { useEffect } from "react";
+import { useSelector } from "react-redux";
 
 export default function Cart() {
+	const products = useSelector((state) => state.Cart);
+	useEffect(()=>{
+		console.log(products)
+	})
 	return (
 		<section className="text-gray-600 body-font">
 			<div className="container px-5 py-24 mx-auto">

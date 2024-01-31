@@ -2,6 +2,9 @@ import { useRouter } from "next/router";
 import React, { useState } from "react";
 import mongoose from "mongoose";
 import Product from "@/Models/ProductSchema";
+import { useDispatch } from "react-redux";
+import { Actions } from "../../States/Global";
+import { bindActionCreators } from "redux";
 
 export default function Slug({ product, variants }) {
 	const router = useRouter();
@@ -9,7 +12,16 @@ export default function Slug({ product, variants }) {
 	const [valid, setvalid] = useState();
 	const [col, setcol] = useState(product.Colour);
 	const [size, setsize] = useState(product.Size);
+	const [qty, setqty] = useState(1);
 	const colours = ["red", "green", "blue", "yellow", "white", "black", "grey"];
+	const dispatch = useDispatch();
+
+	const { sendProduct } = bindActionCreators(Actions, dispatch);
+
+	const sendtoCart = () => {
+		const prod = { item: product, quantity: qty };
+		sendProduct(prod);
+	};
 
 	const handelPincode = async () => {
 		await fetch("http://localhost:3000/api/Pincode", {
@@ -31,8 +43,7 @@ export default function Slug({ product, variants }) {
 	};
 
 	const refresh = (size, col) => {
-		
-		window.location=`http://localhost:3000/Products/${variants[col][size]["slug"]}`;
+		window.location = `http://localhost:3000/Products/${variants[col][size]["slug"]}`;
 	};
 
 	return (
@@ -118,6 +129,7 @@ export default function Slug({ product, variants }) {
 									) {
 										return (
 											<button
+												key={item}
 												onClick={() => {
 													refresh(size, item);
 												}}
@@ -190,7 +202,11 @@ export default function Slug({ product, variants }) {
 						<div className="flex mx-auto mt-5 items-center">
 							<span className="mr-3">Quantity</span>
 							<div className="relative">
-								<select className="rounded border appearance-none border-gray-300 py-2 focus:outline-none focus:ring-2 focus:ring-purple-200 focus:border-purple-500 text-base pl-3 pr-10">
+								<select
+									onChange={(e) => {
+										setqty(parseInt(e.target.value));
+									}}
+									className="rounded border appearance-none border-gray-300 py-2 focus:outline-none focus:ring-2 focus:ring-purple-200 focus:border-purple-500 text-base pl-3 pr-10">
 									<option>1</option>
 									<option>2</option>
 									<option>3</option>
@@ -246,7 +262,9 @@ export default function Slug({ product, variants }) {
 				</div>
 			</div>
 			<div className="flex justify-center">
-				<button className=" mx-auto buto border-0 py-2 px-6 focus:outline-none  rounded">
+				<button
+					onClick={sendtoCart}
+					className=" mx-auto buto border-0 py-2 px-6 focus:outline-none  rounded">
 					Add to cart
 				</button>
 			</div>
