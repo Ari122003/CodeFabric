@@ -3,12 +3,12 @@ import { useSelector } from "react-redux";
 
 export default function Cart() {
 	const products = useSelector((state) => state.Cart);
-	useEffect(()=>{
-		console.log(products)
-	})
+	useEffect(() => {
+		console.log(products);
+	});
 	return (
 		<section className="text-gray-600 body-font">
-			<div className="container px-5 py-24 mx-auto">
+			<div className="container px-5 py-20 mx-auto">
 				<div className="flex flex-col text-center w-full mb-20">
 					<h1 className="text-4xl font-medium title-font mb-4 text-gray-900">
 						Your cart

@@ -52,3 +52,7 @@
 .buto:hover {
 	background-color: #db54db;
 }
+.order {
+	background: linear-gradient(145deg, #f0f0f0, #cacaca);
+	box-shadow: 37px 37px 76px #a6a6a6, -37px -37px 76px #ffffff;
+}
