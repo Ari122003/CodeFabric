@@ -1,5 +1,5 @@
 import React from "react";
-import auth from "./Firebase";
+import auth from "@/Firebase";
 import { GoogleAuthProvider } from "firebase/auth";
 
 
@@ -16,7 +16,7 @@ export default function Login() {
 
 
 
-	
+
 	return (
 		<div className="">
 			<div className="flex flex-col text-center w-full mt-10">
