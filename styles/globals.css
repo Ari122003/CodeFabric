@@ -35,7 +35,8 @@
 }
 
 .product {
-	box-shadow: 31px 31px 49px #b5b5b5, -31px -31px 49px #ffffff;
+	
+	box-shadow: 37px 37px 76px #a6a6a6,inset -37px -37px 76px #ffffff;
 }
 
 .select {

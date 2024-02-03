@@ -1,17 +1,15 @@
 import React from "react";
 
 export default function Order() {
-  fet
 	return (
 		<form>
 			<div class="space-y-12 mx-20 my-20 order rounded-2xl">
 				<div class="border-b border-gray-900/10 pb-12 mx-10 ">
-					<h2 class="text-base font-semibold leading-7 text-gray-900 pt-10">
-						Personal Information
-					</h2>
-					<p class="mt-1 text-sm leading-6 text-gray-600">
-						Use a permanent address where you can receive mail.
-					</p>
+					<div className="flex justify-center py-10">
+						<h2 class="md:text-6xl text-3xl font-semibold leading-7 text-gray-900 ">
+							Order details
+						</h2>
+					</div>
 
 					<div class="mt-10 grid grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-6">
 						<div class="sm:col-span-3">

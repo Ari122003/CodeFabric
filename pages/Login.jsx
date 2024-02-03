@@ -1,21 +1,34 @@
 import React from "react";
 import auth from "@/Firebase";
-import { GoogleAuthProvider } from "firebase/auth";
-
+import {
+	FacebookAuthProvider,
+	GoogleAuthProvider,
+	signInWithPopup,
+} from "firebase/auth";
 
 export default function Login() {
+	const googleSignup = async () => {
+		const provider = new GoogleAuthProvider();
 
+		await signInWithPopup(auth, provider)
+			.then((res) => {
+				console.log(res.user.uid);
+			})
+			.catch((err) => {
+				console.log(err.message);
+			});
+	};
 
-
-
-
-
-
-
-
-
-
-
+	const facebookSignin = async () => {
+		const provider = new FacebookAuthProvider();
+		await signInWithPopup(auth, provider)
+			.then((res) => {
+				console.log(res.user.uid);
+			})
+			.catch((err) => {
+				console.log(err.message);
+			});
+	};
 
 	return (
 		<div className="">
@@ -31,7 +44,9 @@ export default function Login() {
 						<div class="text-right mb-4"></div>
 						<div class="flex justify-center w-full items-center flex-col space-y-5">
 							<div>
-						<button class="flex items-center justify-center py-2 px-20 bg-white hover:bg-gray-200 focus:ring-pink-700 focus:ring-offset-blue-200 text-gray-700 w-full transition ease-in duration-200 text-center text-base font-semibold shadow-md focus:outline-none focus:ring-2 focus:ring-offset-2 rounded-lg">
+								<button
+									onClick={googleSignup}
+									class="flex items-center justify-center py-2 px-20 bg-white hover:bg-gray-200 focus:ring-pink-700 focus:ring-offset-blue-200 text-gray-700 w-full transition ease-in duration-200 text-center text-base font-semibold shadow-md focus:outline-none focus:ring-2 focus:ring-offset-2 rounded-lg">
 									<svg
 										viewBox="0 0 24 24"
 										height="25"
@@ -95,7 +110,7 @@ export default function Login() {
 								</button>
 							</div>
 							<div>
-					<button class="flex items-center justify-center py-2 px-20 bg-white hover:bg-gray-200 focus:ring-pink-700 focus:ring-offset-blue-200 text-gray-700 w-full transition ease-in duration-200 text-center text-base font-semibold shadow-md focus:outline-none focus:ring-2 focus:ring-offset-2 rounded-lg">
+								<button onClick={facebookSignin} class="flex items-center justify-center py-2 px-20 bg-white hover:bg-gray-200 focus:ring-pink-700 focus:ring-offset-blue-200 text-gray-700 w-full transition ease-in duration-200 text-center text-base font-semibold shadow-md focus:outline-none focus:ring-2 focus:ring-offset-2 rounded-lg">
 									<svg
 										style={{ color: "blue" }}
 										xmlns="http://www.w3.org/2000/svg"

@@ -8,7 +8,7 @@ const OrdserSchema = new mongoose.Schema(
 		},
 		Products: [
 			{
-				ProductId: { type: String },
+				Product: { type: Object, required: true },
 				Quantity: { type: Number, default: 1 },
 			},
 		],
@@ -17,12 +17,21 @@ const OrdserSchema = new mongoose.Schema(
 			type: String,
 			required: true,
 		},
+		State: {
+			type: String,
+			required: true,
+		},
+		City: {
+			type: String,
+			required: true,
+		},
+
 		Amount: {
 			type: Number,
 			required: true,
 		},
 		Status: {
-			type: Number,
+			type: String,
 			required: true,
 		},
 	},

@@ -2,11 +2,10 @@ import { useRouter } from "next/router";
 import React, { useState } from "react";
 import mongoose from "mongoose";
 import Product from "@/Models/ProductSchema";
-import { useDispatch } from "react-redux";
-import { Actions } from "../../States/Global";
-import { bindActionCreators } from "redux";
+import { useDispatch, useSelector } from "react-redux";
+import { addtoCart } from "@/States/Reducers/CartReducer";
 
-export default function Slug({ product, variants }) {
+export default function Slug({ product, variants, addTocart }) {
 	const router = useRouter();
 	const [pin, setpin] = useState();
 	const [valid, setvalid] = useState();
@@ -15,12 +14,27 @@ export default function Slug({ product, variants }) {
 	const [qty, setqty] = useState(1);
 	const colours = ["red", "green", "blue", "yellow", "white", "black", "grey"];
 	const dispatch = useDispatch();
+	const cart = useSelector((state) => state.Cart.cart);
 
-	const { sendProduct } = bindActionCreators(Actions, dispatch);
+	const sendtoCart = async () => {
+		if (cart.length === 0) {
+			const prod = { item: product, quantity: qty };
+			dispatch(addtoCart(prod));
+		} else {
+			let match = false;
+			await cart.forEach((i) => {
+				if (i.item.Slug === product.Slug) {
+					match = true;
+				}
+			});
+			if (match == false) {
+				const prod = { item: product, quantity: qty };
 
-	const sendtoCart = () => {
-		const prod = { item: product, quantity: qty };
-		sendProduct(prod);
+				dispatch(addtoCart(prod));
+			} else {
+				alert("Added");
+			}
+		}
 	};
 
 	const handelPincode = async () => {

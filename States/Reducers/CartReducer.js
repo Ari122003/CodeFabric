@@ -1,9 +1,47 @@
-const CartReducer = (state = {}, action) => {
-	if (action.type === "send") {
-		return (state = action.payload);
-	} else {
-		return state;
-	}
-};
+// const CartReducer = (state =[], action) => {
+// 	if (action.type === "send") {
+// 		return (state = state.concat(action.payload));
+// 	} else {
+// 		return state;
+// 	}
+// };
 
-export default CartReducer;
+// export default CartReducer;
+
+import { createSlice } from "@reduxjs/toolkit";
+
+const CartReducer = createSlice({
+	name: "cart",
+	initialState: {
+		cart: [],
+	},
+
+	reducers: {
+		addtoCart(state, action) {
+			state.cart.push(action.payload);
+		},
+
+		remove(state, action) {
+			const id = action.payload;
+
+			state.cart = state.cart.filter((i) => {
+				if (i.item.Slug !== id) {
+					return i;
+				}
+			});
+		},
+
+		update(state, action) {
+			const { qty, slug } = action.payload;
+
+			state.cart.forEach((i) => {
+				if (i.item.Slug === slug) {
+					i.quantity = qty;
+				}
+			});
+		},
+	},
+});
+
+export const { addtoCart, remove, update } = CartReducer.actions;
+export default CartReducer.reducer;
