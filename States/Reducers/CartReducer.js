@@ -1,13 +1,3 @@
-// const CartReducer = (state =[], action) => {
-// 	if (action.type === "send") {
-// 		return (state = state.concat(action.payload));
-// 	} else {
-// 		return state;
-// 	}
-// };
-
-// export default CartReducer;
-
 import { createSlice } from "@reduxjs/toolkit";
 
 const CartReducer = createSlice({

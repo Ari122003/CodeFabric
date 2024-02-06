@@ -3,7 +3,7 @@ import connect from "@/Middleware";
 
 const handler = async (req, res) => {
 	try {
-		const { userId, products, address, state, city, amount } = req.body;
+		const { userId, products, address, state, city, amount, zip } = req.body;
 
 		const newOrder = new Order({
 			UserId: userId,
@@ -11,11 +11,12 @@ const handler = async (req, res) => {
 			Address: address,
 			State: state,
 			City: city,
+			Zip: zip,
 			Amount: amount,
 			Status: "Taken",
 		});
 		await newOrder.save();
-		res.status(200).send("Order placed");
+		res.status(200).json(req.body);
 	} catch (error) {
 		res.status(500).send(error);
 	}

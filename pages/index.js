@@ -1,3 +1,4 @@
+import React from "react";
 import Head from "next/head";
 import Image from "next/image";
 import { Inter } from "next/font/google";
@@ -16,7 +17,7 @@ export default function Home() {
 				<link rel="icon" href="icon.jpg" />
 			</Head>
 
-			<Image height={300} width={1270} src="/back.jpg" priority alt="back" />
+			<></>
 		</>
 	);
 }

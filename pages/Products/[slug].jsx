@@ -5,7 +5,7 @@ import Product from "@/Models/ProductSchema";
 import { useDispatch, useSelector } from "react-redux";
 import { addtoCart } from "@/States/Reducers/CartReducer";
 
-export default function Slug({ product, variants, addTocart }) {
+export default function Slug({ product, variants, directBuy }) {
 	const router = useRouter();
 	const [pin, setpin] = useState();
 	const [valid, setvalid] = useState();
@@ -35,6 +35,15 @@ export default function Slug({ product, variants, addTocart }) {
 				alert("Added");
 			}
 		}
+	};
+
+	const buyNow = () => {
+		const tosend = {
+			item: product,
+			quantity: qty,
+		};
+		directBuy(tosend);
+		router.push(`/Order/buynow`);
 	};
 
 	const handelPincode = async () => {
@@ -198,7 +207,9 @@ export default function Slug({ product, variants, addTocart }) {
 							<span className="title-font font-medium text-2xl text-gray-900">
 								M.R.P:- ₹{product.Price}
 							</span>
-							<button className="flex ml-auto buto border-0 py-2 px-6 focus:outline-none  rounded">
+							<button
+								onClick={buyNow}
+								className="flex ml-auto buto border-0 py-2 px-6 focus:outline-none  rounded">
 								Buy now
 							</button>
 							<button className="rounded-full w-10 h-10 bg-gray-200 p-0 border-0 inline-flex items-center justify-center text-gray-500 ml-4">

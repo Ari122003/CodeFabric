@@ -10,7 +10,7 @@ export default function Navbar() {
 		router.push(`/${e.target.value}`);
 	};
 	return (
-		<header className="text-white body-font shadow-2xl hedu sticky top-0 z-10">
+		<header className="text-white body-font shadow-2xl hedu sticky top-0 z-20">
 			<div className="container mx-auto flex flex-wrap p-2 flex-col md:flex-row  items-center">
 				<a className="flex title-font font-medium items-center text-gray-900 mb-4 md:mb-0">
 					<div className="w-14 h-14 p-2 rounded-full" viewBox="0 0 24 24">
@@ -25,11 +25,11 @@ export default function Navbar() {
 					<Link href="/">
 						<span className="mx-3 md:mx-5 navs">Home</span>
 					</Link>
-					<Link href="/Latest">
-						<span className="mx-3 md:mx-5 navs">Latest</span>
-					</Link>
 					<Link href="/Contact">
 						<span className="mx-3 md:mx-5  navs">Contact us</span>
+					</Link>
+					<Link href="/Orders">
+						<span className="mx-3 md:mx-5 navs">Orders</span>
 					</Link>
 					<select
 						name="Categories"

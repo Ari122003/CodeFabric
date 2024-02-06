@@ -6,13 +6,18 @@ import {
 	signInWithPopup,
 } from "firebase/auth";
 
+import { addUser } from "@/States/Reducers/UserReducer";
+import { useDispatch } from "react-redux";
+
 export default function Login() {
+	const dispatch = useDispatch();
 	const googleSignup = async () => {
 		const provider = new GoogleAuthProvider();
 
 		await signInWithPopup(auth, provider)
 			.then((res) => {
 				console.log(res.user.uid);
+				dispatch(addUser(res.user.uid));
 			})
 			.catch((err) => {
 				console.log(err.message);
@@ -110,7 +115,9 @@ export default function Login() {
 								</button>
 							</div>
 							<div>
-								<button onClick={facebookSignin} class="flex items-center justify-center py-2 px-20 bg-white hover:bg-gray-200 focus:ring-pink-700 focus:ring-offset-blue-200 text-gray-700 w-full transition ease-in duration-200 text-center text-base font-semibold shadow-md focus:outline-none focus:ring-2 focus:ring-offset-2 rounded-lg">
+								<button
+									onClick={facebookSignin}
+									class="flex items-center justify-center py-2 px-20 bg-white hover:bg-gray-200 focus:ring-pink-700 focus:ring-offset-blue-200 text-gray-700 w-full transition ease-in duration-200 text-center text-base font-semibold shadow-md focus:outline-none focus:ring-2 focus:ring-offset-2 rounded-lg">
 									<svg
 										style={{ color: "blue" }}
 										xmlns="http://www.w3.org/2000/svg"

@@ -16,7 +16,7 @@ export default function Cart() {
 		} else {
 			for (let i of products) {
 				let { item } = i;
-				sum = sum + item.Price;
+				sum = (sum + item.Price)*i.quantity;
 				settotal(sum);
 			}
 		}
@@ -119,7 +119,7 @@ export default function Cart() {
 					{total !== 0 && `Subtotal : ${total}`}
 				</h1>
 				{total !== 0 && (
-					<Link href="/Order">
+					<Link href="/Order/fromcart">
 						<button className="buto py-1 px-3 mt-10 focus:outline-none rounded">
 							Proceed to buy
 						</button>

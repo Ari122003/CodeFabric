@@ -8,8 +8,8 @@ const OrdserSchema = new mongoose.Schema(
 		},
 		Products: [
 			{
-				Product: { type: Object, required: true },
-				Quantity: { type: Number, default: 1 },
+				item: { type: Object, required: true },
+				quantity: { type: Number, default: 1 },
 			},
 		],
 
@@ -23,6 +23,10 @@ const OrdserSchema = new mongoose.Schema(
 		},
 		City: {
 			type: String,
+			required: true,
+		},
+		Zip: {
+			type: Number,
 			required: true,
 		},
 
