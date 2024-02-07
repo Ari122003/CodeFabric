@@ -12,7 +12,7 @@ export default function Slug({ product, variants, directBuy }) {
 	const [col, setcol] = useState(product.Colour);
 	const [size, setsize] = useState(product.Size);
 	const [qty, setqty] = useState(1);
-	const colours = ["red", "green", "blue", "yellow", "white", "black", "grey"];
+	const colours = [`red`, `green`, `blue`, `yellow`, `white`, `black`, `grey`];
 	const dispatch = useDispatch();
 	const cart = useSelector((state) => state.Cart.cart);
 
@@ -156,7 +156,8 @@ export default function Slug({ product, variants, directBuy }) {
 												onClick={() => {
 													refresh(size, item);
 												}}
-												className={`border-2  rounded-full w-6 h-6 bg-${item}-500 focus:outline-none ${
+												style={{ backgroundColor: item }}
+												className={`border-2  rounded-full w-6 h-6  focus:outline-none ${
 													col === item ? "border-black" : "border-gray-300"
 												}`}></button>
 										);

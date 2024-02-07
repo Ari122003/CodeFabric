@@ -5,7 +5,7 @@ import Product from "@/Models/ProductSchema";
 
 export default function Tshirts(props) {
 	const products = props.Products;
-	console.log(products);
+
 	return (
 		<section className="text-black body-font mx-10 ">
 			<div className="container px-5 py-24 mx-auto">
@@ -97,7 +97,7 @@ export async function getServerSideProps() {
 			}
 		}
 	}
-	console.log(tshirts)
+	console.log(tshirts);
 
 	return { props: { Products: JSON.parse(JSON.stringify(tshirts)) } };
 }

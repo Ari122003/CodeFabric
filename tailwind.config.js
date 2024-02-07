@@ -4,7 +4,8 @@ module.exports = {
 		"./app/**/*.{js,ts,jsx,tsx,mdx}",
 		"./pages/**/*.{js,ts,jsx,tsx,mdx}",
 		"./components/**/*.{js,ts,jsx,tsx,mdx}",
-		"./node_modules/tw-elements-react/dist/js/**/*.js",
+		
+		'node_modules/flowbite-react/lib/esm/**/*.js',
 
 		// Or if using `src` directory:
 		"./src/**/*.{js,ts,jsx,tsx,mdx}",
@@ -12,5 +13,5 @@ module.exports = {
 	theme: {
 		extend: {},
 	},
-	plugins: [require("tw-elements-react/dist/plugin.cjs")],
+	plugins: [ require('flowbite/plugin')],
 };

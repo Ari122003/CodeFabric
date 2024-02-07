@@ -3,13 +3,13 @@
 @tailwind utilities;
 
 .but {
-	background-color: white;
-	color: #8b008b;
+	color: white;
+	background-color: #8b008b;
 	transition: all ease 0.5s;
 	font-weight: 600;
 }
 .hedu {
-	background-color: #8b008b;
+	background-color: white;
 }
 .heding {
 	color: #8b008b;
@@ -20,18 +20,18 @@
 }
 .navs {
 	cursor: pointer;
+	color: #8b008b;
 }
 
 .navs:hover {
-	/* color: #e6c2e6; */
-	color: #430843;
+	color: #fc1bfc;
 }
 .icon {
-	color: white;
+	color:#8b008b;
 }
 
 .icon:hover {
-	color: #54022e;
+	color:#ff18ff;
 }
 
 .product {
@@ -39,7 +39,9 @@
 }
 
 .select {
-	background-color: #8b008b;
+	background-color: white;
+	color: #8b008b;
+	
 }
 .option {
 	background-color: white;
@@ -58,4 +60,8 @@
 		background: linear-gradient(145deg, #f0f0f0, #cacaca);
 		box-shadow: 37px 37px 76px #a6a6a6, -37px -37px 76px #ffffff;
 	}
+}
+
+.banner {
+	background-color: #8b008b;
 }

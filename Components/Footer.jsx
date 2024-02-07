@@ -3,7 +3,7 @@ import React from "react";
 
 export default function Footer() {
 	return (
-		<footer class="text-white hedu body-font">
+		<footer class="text-black  body-font">
 			<div class="container md:px-20 py-24 mx-auto flex md:items-center lg:items-start md:flex-row md:flex-nowrap flex-wrap flex-col">
 				<div class="w-64 flex-shrink-0 md:mx-0 mx-auto text-center md:text-left justify-center">
 					<Image src="/logo.jpg" height={200} width={200} alt="logo" className="inline"/>
