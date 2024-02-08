@@ -1,10 +1,12 @@
 import Link from "next/link";
-import React from "react";
+import React, { useEffect } from "react";
 import mongoose from "mongoose";
 import Product from "@/Models/ProductSchema";
 
 export default function Tshirts(props) {
 	const products = props.Products;
+
+	useEffect(() => {});
 
 	return (
 		<section className="text-black body-font mx-10 ">
@@ -97,7 +99,6 @@ export async function getServerSideProps() {
 			}
 		}
 	}
-	console.log(tshirts);
 
 	return { props: { Products: JSON.parse(JSON.stringify(tshirts)) } };
 }

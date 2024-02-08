@@ -4,6 +4,7 @@ import { useSelector } from "react-redux";
 export default function Orders() {
 	const token = useSelector((state) => state.User.token);
 	const [orders, setorders] = useState([]);
+
 	useEffect(() => {
 		getOrders();
 	}, []);
@@ -31,10 +32,18 @@ export default function Orders() {
 		<div class="flex mx-20 my-20 flex-col">
 			<div className="flex flex-col text-center w-full mb-5">
 				<h1 className="sm:text-6xl text-3xl font-medium title-font text-gray-900">
-					Your Orders
+					{token == null && orders.length === 0
+						? "Please sign in to order"
+						: ""}
+					{orders.length == 0 && token != null
+						? "You have not ordered yet!!!"
+						: "Your Orders"}
 				</h1>
 			</div>
-			<div class="overflow-x-auto sm:-mx-6 lg:-mx-8">
+			<div
+				class={`overflow-x-auto sm:-mx-6 lg:-mx-8  ${
+					token == null ? "hidden" : ""
+				}`}>
 				<div class="inline-block min-w-full py-2 sm:px-6 lg:px-8">
 					<div class="overflow-hidden">
 						<table class="min-w-full text-left text-sm font-light">

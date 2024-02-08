@@ -3,11 +3,14 @@ import { useDispatch, useSelector } from "react-redux";
 import { MdDelete } from "react-icons/md";
 import { remove, update } from "@/States/Reducers/CartReducer";
 import Link from "next/link";
+import { useRouter } from "next/router";
 
 export default function Cart() {
 	const products = useSelector((state) => state.Cart.cart);
 	const [total, settotal] = useState(0);
 	const dispatch = useDispatch();
+	const token = useSelector((state) => state.User.token);
+	const router = useRouter();
 
 	useEffect(() => {
 		let sum = 0;
@@ -16,7 +19,7 @@ export default function Cart() {
 		} else {
 			for (let i of products) {
 				let { item } = i;
-				sum = (sum + item.Price)*i.quantity;
+				sum = (sum + item.Price) * i.quantity;
 				settotal(sum);
 			}
 		}
@@ -33,6 +36,14 @@ export default function Cart() {
 
 	const removeItem = (slug) => {
 		dispatch(remove(slug));
+	};
+
+	const cartBuy = () => {
+		if (token === null) {
+			router.push("/Login");
+		} else {
+			router.push("/Order/fromcart");
+		}
 	};
 
 	return (
@@ -119,11 +130,11 @@ export default function Cart() {
 					{total !== 0 && `Subtotal : ${total}`}
 				</h1>
 				{total !== 0 && (
-					<Link href="/Order/fromcart">
-						<button className="buto py-1 px-3 mt-10 focus:outline-none rounded">
-							Proceed to buy
-						</button>
-					</Link>
+					<button
+						onClick={cartBuy}
+						className="buto py-1 px-3 mt-10 focus:outline-none rounded">
+						Proceed to buy
+					</button>
 				)}
 			</div>
 		</section>

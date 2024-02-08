@@ -23,6 +23,9 @@ export default function Order({ itemTobuynow }) {
 	const [prod, setprod] = useState([]);
 
 	useEffect(() => {
+		if (router.query.order !== "fromcart" && router.query.order !== "buynow") {
+			router.push("/Tshirts");
+		}
 		if (router.query.order === "fromcart") {
 			setprod(products);
 
@@ -35,7 +38,7 @@ export default function Order({ itemTobuynow }) {
 			}
 
 			setamt(sum);
-		} else {
+		} else if (router.query.order === "buynow") {
 			setamt(itemTobuynow.item.Price * itemTobuynow.quantity);
 			const arr = [];
 			arr.push(itemTobuynow);

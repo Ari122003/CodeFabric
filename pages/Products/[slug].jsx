@@ -15,6 +15,7 @@ export default function Slug({ product, variants, directBuy }) {
 	const colours = [`red`, `green`, `blue`, `yellow`, `white`, `black`, `grey`];
 	const dispatch = useDispatch();
 	const cart = useSelector((state) => state.Cart.cart);
+	const token = useSelector((state) => state.User.token);
 
 	const sendtoCart = async () => {
 		if (cart.length === 0) {
@@ -38,12 +39,16 @@ export default function Slug({ product, variants, directBuy }) {
 	};
 
 	const buyNow = () => {
-		const tosend = {
-			item: product,
-			quantity: qty,
-		};
-		directBuy(tosend);
-		router.push(`/Order/buynow`);
+		if (token === null) {
+			router.push("/Login");
+		} else {
+			const tosend = {
+				item: product,
+				quantity: qty,
+			};
+			directBuy(tosend);
+			router.push(`/Order/buynow`);
+		}
 	};
 
 	const handelPincode = async () => {

@@ -1,55 +1,225 @@
 import Image from "next/image";
 import Link from "next/link";
 import { useRouter } from "next/router";
-import React, { useState } from "react";
+import React, { useRef, useState } from "react";
 import { FaCartPlus } from "react-icons/fa6";
-import { Navbar } from "flowbite-react";
+import { useDispatch, useSelector } from "react-redux";
+import { addUser } from "@/States/Reducers/UserReducer";
 
 export default function Navbars() {
 	const router = useRouter();
+	const [droped, setdroped] = useState(false);
+	const [prof, setprof] = useState(false);
+	const token = useSelector((state) => state.User.token);
+	const dispatch = useDispatch();
+
 	const change = (e) => {
 		router.push(`/${e.target.value}`);
 	};
-	return (
-		<Navbar fluid rounded className="shadow-md sticky top-0 z-50">
-			<Navbar.Brand className="">
-				<Navbar.Toggle className="md:mr-0 mr-2" />
-				<img
-					src="icon.png"
-					className="mr-3 md:h-10 md:w-10 h-12 w-12"
-					alt="Flowbite React Logo"
-				/>
-				<span className="self-center whitespace-nowrap text-xl font-semibold dark:text-white">
-					Bongwear
-				</span>
-			</Navbar.Brand>
 
-			<Navbar.Collapse className="md:ml-[16rem]">
-				<Navbar.Link href="/" className="text-xl navs mt-1">
-					Home
-				</Navbar.Link>
-				<Navbar.Link href="/Contact" className="text-xl navs mt-1">
-					Contact us
-				</Navbar.Link>
-				<Navbar.Link href="/Orders" className="text-xl navs mt-1">
-					Orders
-				</Navbar.Link>
-				<select name="Categories" className="md:mb-0 mb-2 select" onChange={change}>
-					<option hidden>Categories</option>
-					<option className="option">Tshirts</option>
-					<option className="option">Panjabi</option>
-					<option className="option">Saree</option>
-					<option className="option">Mugs</option>
-				</select>
-			</Navbar.Collapse>
-			<Link href="/Cart">
-				<FaCartPlus className="md:ml-[14rem] ml-30 h-6 w-6 md:h-8 md:w-8 icon" />
-			</Link>
-			<Link href="/Login">
-				<button className="inline-flex items-center but border-0 py-1 px-3 focus:outline-none rounded text-base mr-2  md:mt-0 md:mr-5">
-					Sign in
-				</button>
-			</Link>
-		</Navbar>
+	const menuref = useRef(null);
+	const profileref = useRef(null);
+
+	const toggleMenu = () => {
+		if (droped == false) {
+			menuref.current.classList.remove("hidden");
+			menuref.current.classList.add("sm:hidden");
+			setdroped(true);
+		} else {
+			menuref.current.classList.remove("sm:hidden");
+			menuref.current.classList.add("hidden");
+			setdroped(false);
+		}
+	};
+
+	const toggleProfile = () => {
+		if (prof == false) {
+			profileref.current.classList.remove("hidden");
+			setprof(true);
+		} else {
+			profileref.current.classList.add("hidden");
+			setprof(false);
+		}
+	};
+
+	const logOut = () => {
+		dispatch(addUser(null));
+		profileref.current.classList.add("hidden");
+		setprof(false);
+	};
+
+	return (
+		<>
+			<nav className="hedu shadow-md sticky top-0 z-50">
+				<div className="mx-auto max-w-7xl px-2 sm:px-6 lg:px-8">
+					<div className="relative flex h-16 items-center justify-between">
+						<div className="absolute inset-y-0 left-0 flex items-center sm:hidden">
+							<button
+								type="button"
+								onClick={toggleMenu}
+								className="relative inline-flex items-center justify-center rounded-md p-2 toggle focus:outline-none focus:ring-2 focus:ring-inset focus:ring-white"
+								aria-controls="mobile-menu"
+								aria-expanded="false">
+								<span className="absolute -inset-0.5"></span>
+								<span className="sr-only">Open main menu</span>
+
+								<svg
+									className="block h-6 w-6"
+									fill="none"
+									viewBox="0 0 24 24"
+									stroke-width="1.5"
+									stroke="currentColor"
+									aria-hidden="true">
+									<path
+										stroke-linecap="round"
+										stroke-linejoin="round"
+										d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5"
+									/>
+								</svg>
+
+								<svg
+									className="hidden h-6 w-6"
+									fill="none"
+									viewBox="0 0 24 24"
+									stroke-width="1.5"
+									stroke="currentColor"
+									aria-hidden="true">
+									<path
+										stroke-linecap="round"
+										stroke-linejoin="round"
+										d="M6 18L18 6M6 6l12 12"
+									/>
+								</svg>
+							</button>
+						</div>
+						<div className="flex flex-1 items-center justify-center sm:items-stretch sm:justify-start">
+							<div className="flex flex-shrink-0 items-center">
+								<img
+									className="h-10 w-auto"
+									src="icon.png"
+									alt="Your Company"
+								/>
+								<span className="text-black text-2xl hidden md:block font-bold">
+									Bongwear
+								</span>
+							</div>
+							<div className="hidden sm:ml-6 md:ml-16 sm:block">
+								<div className="flex space-x-4">
+									<Link
+										href="/"
+										className=" navs rounded-md px-3 py-2 text-xl font-medium"
+										aria-current="page">
+										Home
+									</Link>
+									<Link
+										href="/Contact"
+										className="navs rounded-md px-3 py-2 text-xl font-medium">
+										Contact us
+									</Link>
+									<Link
+										href="/Orders"
+										className="navs rounded-md px-3 py-2 text-xl font-medium">
+										Orders
+									</Link>
+									<select
+										className="navs rounded-md px-3 py-2 text-xl font-medium"
+										onChange={change}>
+										<option hidden>Categories</option>
+										<option className="option">Tshirts</option>
+										<option className="option">Panjabi</option>
+										<option className="option">Saree</option>
+										<option className="option">Mugs</option>
+									</select>
+								</div>
+							</div>
+						</div>
+						<div className="absolute inset-y-0 right-0 flex items-center pr-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0">
+							<Link href="/Cart">
+							<FaCartPlus className="icon h-7 w-7 mt-[0.27rem] hidden md:inline-block" />
+							</Link>
+							<Link href="/Login" className={token == null ? "" : "hidden"}>
+								<button className="inline-flex items-center but border-0 py-1 px-3 ml-2 focus:outline-none rounded text-base  md:mt-0 md:mr-2">
+									Sign in
+								</button>
+							</Link>
+							<div className="relative ml-3 ">
+								<div className={token == null ? "hidden" : ""}>
+									<button
+										type="button"
+										className="relative flex rounded-full bg-gray-800 text-sm focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800"
+										id="user-menu-button"
+										aria-expanded="false"
+										onClick={toggleProfile}
+										aria-haspopup="true">
+										<span className="absolute -inset-1.5"></span>
+										<span className="sr-only">Open user menu</span>
+										<img
+											className="h-8 w-8 rounded-full"
+											src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80"
+											alt=""
+										/>
+									</button>
+								</div>
+
+								<div
+									className="absolute hidden right-0 z-10 mt-2 w-48 origin-top-right rounded-md bg-white py-1 shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none"
+									role="menu"
+									ref={profileref}
+									aria-orientation="vertical"
+									aria-labelledby="user-menu-button"
+									tabindex="-1">
+									<a
+										href="#"
+										className="block px-4 py-2 navs text-xl"
+										role="menuitem"
+										tabindex="-1"
+										id="user-menu-item-0">
+										Your Profile
+									</a>
+									<a
+										href="#"
+										className="block px-4 py-2 navs text-xl"
+										role="menuitem"
+										tabindex="-1"
+										id="user-menu-item-1">
+										Settings
+									</a>
+									<span
+										href="#"
+										className="block px-4 py-2 navs text-xl"
+										onClick={logOut}
+										role="menuitem"
+										tabindex="-1"
+										id="user-menu-item-2">
+										Log out
+									</span>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+
+				<div className="hidden" id="mobile-menu" ref={menuref}>
+					<div className="space-y-1 px-2 pb-3 pt-2">
+						<Link
+							href="/Tshirts"
+							className="navs block rounded-md px-3 py-2  font-medium"
+							aria-current="page">
+							Tshirts
+						</Link>
+						<Link
+							href="/Panjabi"
+							className="navs block rounded-md px-3 py-2 text-base font-medium">
+							Punjabis
+						</Link>
+						<Link
+							href="/Saree"
+							className="navs block rounded-md px-3 py-2 text-base font-medium">
+							Saree
+						</Link>
+					</div>
+				</div>
+			</nav>
+		</>
 	);
 }
