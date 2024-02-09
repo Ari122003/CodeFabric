@@ -5,7 +5,7 @@ import Product from "@/Models/ProductSchema";
 import { useDispatch, useSelector } from "react-redux";
 import { addtoCart } from "@/States/Reducers/CartReducer";
 
-export default function Slug({ product, variants, directBuy }) {
+export default function Slug({ product, variants, directBuy,toast }) {
 	const router = useRouter();
 	const [pin, setpin] = useState();
 	const [valid, setvalid] = useState();
@@ -40,6 +40,7 @@ export default function Slug({ product, variants, directBuy }) {
 
 	const buyNow = () => {
 		if (token === null) {
+			toast("err", "Please sign in to order!!!");
 			router.push("/Login");
 		} else {
 			const tosend = {

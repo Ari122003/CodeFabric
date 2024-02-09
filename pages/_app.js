@@ -9,6 +9,8 @@ import Lowerpanel from "@/Components/Lowerpanel";
 import LoadingBar from "react-top-loading-bar";
 import { useRouter } from "next/router";
 import Head from "next/head";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 export default function App({ Component, pageProps }) {
 	const [prod, setprod] = useState({});
@@ -28,6 +30,23 @@ export default function App({ Component, pageProps }) {
 		setprod(item);
 	};
 
+	const notify = (type, msg) => {
+		if (type === "err") {
+			toast.error(msg, {
+				theme: "dark",
+				autoClose:2000,
+				position:"top-center"
+			});
+		}
+		if (type === "suc") {
+			toast.success(msg, {
+				theme: "dark",
+				autoClose:2000,
+				position:"top-center"
+			});
+		}
+	};
+
 	return (
 		<>
 			<Head>
@@ -38,7 +57,7 @@ export default function App({ Component, pageProps }) {
 			</Head>
 			<Provider store={store}>
 				<PersistGate persistor={persistedstore}>
-					<Navbar />
+					<Navbar toast={notify} />
 					<LoadingBar
 						color="#8b008b"
 						height={5}
@@ -46,7 +65,14 @@ export default function App({ Component, pageProps }) {
 						waitingTime={200}
 					/>
 
-					<Component {...pageProps} directBuy={now} itemTobuynow={prod} />
+					<ToastContainer />
+
+					<Component
+						{...pageProps}
+						directBuy={now}
+						itemTobuynow={prod}
+						toast={notify}
+					/>
 
 					<Footer />
 

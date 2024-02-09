@@ -32,7 +32,7 @@ const handler = async (req, res) => {
 				await newProduct.save();
 			}
 
-			res.status(200).send("Saved Successfully");
+			res.status(200).send("Order placed Successfully");
 		} catch (error) {
 			
 			res.status(500).send("Internal server error");

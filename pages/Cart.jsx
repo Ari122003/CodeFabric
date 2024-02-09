@@ -5,7 +5,7 @@ import { remove, update } from "@/States/Reducers/CartReducer";
 import Link from "next/link";
 import { useRouter } from "next/router";
 
-export default function Cart() {
+export default function Cart({ toast }) {
 	const products = useSelector((state) => state.Cart.cart);
 	const [total, settotal] = useState(0);
 	const dispatch = useDispatch();
@@ -40,6 +40,7 @@ export default function Cart() {
 
 	const cartBuy = () => {
 		if (token === null) {
+			toast("err", "Please sign in to order!!!");
 			router.push("/Login");
 		} else {
 			router.push("/Order/fromcart");

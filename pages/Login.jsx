@@ -8,16 +8,19 @@ import {
 
 import { addUser } from "@/States/Reducers/UserReducer";
 import { useDispatch } from "react-redux";
+import { useRouter } from "next/router";
 
-export default function Login() {
+export default function Login({ toast }) {
 	const dispatch = useDispatch();
+	const router = useRouter();
 	const googleSignup = async () => {
 		const provider = new GoogleAuthProvider();
 
 		await signInWithPopup(auth, provider)
 			.then((res) => {
-				console.log(res.user.uid);
 				dispatch(addUser(res.user.uid));
+				toast("suc", "Successfully signed in");
+				router.push("/");
 			})
 			.catch((err) => {
 				console.log(err.message);

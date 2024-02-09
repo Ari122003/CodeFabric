@@ -5,8 +5,9 @@ import React, { useRef, useState } from "react";
 import { FaCartPlus } from "react-icons/fa6";
 import { useDispatch, useSelector } from "react-redux";
 import { addUser } from "@/States/Reducers/UserReducer";
+import { MdAccountCircle } from "react-icons/md";
 
-export default function Navbars() {
+export default function Navbars({toast}) {
 	const router = useRouter();
 	const [droped, setdroped] = useState(false);
 	const [prof, setprof] = useState(false);
@@ -43,6 +44,7 @@ export default function Navbars() {
 	};
 
 	const logOut = () => {
+        toast("suc","You are logged out")
 		dispatch(addUser(null));
 		profileref.current.classList.add("hidden");
 		setprof(false);
@@ -146,18 +148,14 @@ export default function Navbars() {
 								<div className={token == null ? "hidden" : ""}>
 									<button
 										type="button"
-										className="relative flex rounded-full bg-gray-800 text-sm focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800"
+										className="relative flex rounded-full text-sm "
 										id="user-menu-button"
 										aria-expanded="false"
 										onClick={toggleProfile}
 										aria-haspopup="true">
 										<span className="absolute -inset-1.5"></span>
 										<span className="sr-only">Open user menu</span>
-										<img
-											className="h-8 w-8 rounded-full"
-											src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80"
-											alt=""
-										/>
+										<MdAccountCircle className="h-8 w-8 mt-1 icon"/>
 									</button>
 								</div>
 

@@ -2,7 +2,7 @@ import { useRouter } from "next/router";
 import React, { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 
-export default function Order({ itemTobuynow }) {
+export default function Order({ itemTobuynow, toast }) {
 	const [data, setdata] = useState({
 		name: "",
 		email: "",
@@ -13,6 +13,7 @@ export default function Order({ itemTobuynow }) {
 
 	const [zip, setzip] = useState();
 	const [amt, setamt] = useState();
+	
 
 	const router = useRouter();
 
@@ -74,11 +75,12 @@ export default function Order({ itemTobuynow }) {
 				return res.json();
 			})
 			.then((res) => {
-				console.log(res);
+				toast("suc", res.msg);
+				router.push("/Orders");
 			})
 
 			.catch((err) => {
-				console.log(err);
+				toast("err", err.message);
 			});
 	};
 
@@ -205,7 +207,7 @@ export default function Order({ itemTobuynow }) {
 
 				<div class="border-b flex justify-center flex-col items-center border-gray-900/10 pb-12">
 					<h2 class="text-base font-semibold leading-7 text-gray-900">Total</h2>
-					<p class="mt-1 text-sm leading-6  text-gray-600">Rs 1200</p>
+					<p class="mt-1 text-sm leading-6  text-gray-600">Rs {amt}</p>
 				</div>
 			</div>
 
