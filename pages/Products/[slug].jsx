@@ -53,7 +53,8 @@ export default function Slug({ product, variants, directBuy,toast }) {
 	};
 
 	const handelPincode = async () => {
-		await fetch("http://localhost:3000/api/Pincode", {
+	
+		await fetch(`${process.env.NEXT_PUBLIC_API}/api/Pincode`, {
 			method: "POST",
 			headers: {
 				"Content-Type": "application/json",
@@ -72,7 +73,7 @@ export default function Slug({ product, variants, directBuy,toast }) {
 	};
 
 	const refresh = (size, col) => {
-		window.location = `http://localhost:3000/Products/${variants[col][size]["slug"]}`;
+		window.location = `${process.env.NEXT_PUBLIC_API}/Products/${variants[col][size]["slug"]}`;
 	};
 
 	return (

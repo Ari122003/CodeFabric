@@ -11,7 +11,7 @@ export default function Orders() {
 	}, []);
 
 	const getOrders = async () => {
-		await fetch("http://localhost:3000/api/GetOrders", {
+		await fetch(`${process.env.NEXT_PUBLIC_API}/api/GetOrders`, {
 			method: "POST",
 			headers: {
 				"Content-Type": "application/json",

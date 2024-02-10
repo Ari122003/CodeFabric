@@ -166,14 +166,14 @@ export default function Navbars({toast}) {
 									aria-orientation="vertical"
 									aria-labelledby="user-menu-button"
 									tabindex="-1">
-									<a
-										href="#"
+									<Link
+										href="/Account"
 										className="block px-4 py-2 navs text-xl"
 										role="menuitem"
 										tabindex="-1"
 										id="user-menu-item-0">
 										Your Profile
-									</a>
+									</Link>
 									<a
 										href="#"
 										className="block px-4 py-2 navs text-xl"

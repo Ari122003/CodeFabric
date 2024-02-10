@@ -13,7 +13,6 @@ export default function Order({ itemTobuynow, toast }) {
 
 	const [zip, setzip] = useState();
 	const [amt, setamt] = useState();
-	
 
 	const router = useRouter();
 
@@ -56,7 +55,7 @@ export default function Order({ itemTobuynow, toast }) {
 
 	const sumbit = async (e) => {
 		e.preventDefault();
-		await fetch("http://localhost:3000/api/AddOrders", {
+		await fetch(`${process.env.NEXT_PUBLIC_API}/api/AddOrders`, {
 			method: "POST",
 			headers: {
 				"Content-Type": "application/json",
