@@ -5,7 +5,7 @@ import Product from "@/Models/ProductSchema";
 import { useDispatch, useSelector } from "react-redux";
 import { addtoCart } from "@/States/Reducers/CartReducer";
 
-export default function Slug({ product, variants, directBuy,toast }) {
+export default function Slug({ product, variants, directBuy, toast }) {
 	const router = useRouter();
 	const [pin, setpin] = useState();
 	const [valid, setvalid] = useState();
@@ -53,7 +53,6 @@ export default function Slug({ product, variants, directBuy,toast }) {
 	};
 
 	const handelPincode = async () => {
-	
 		await fetch(`${process.env.NEXT_PUBLIC_API}/api/Pincode`, {
 			method: "POST",
 			headers: {
@@ -171,7 +170,10 @@ export default function Slug({ product, variants, directBuy,toast }) {
 									}
 								})}
 							</div>
-							<div className="flex ml-6 items-center">
+							<div
+								className={`flex ml-6 items-center  ${
+									product.Category === "Saree" ? "hidden" : ""
+								} `}>
 								<span className="mr-3">Size</span>
 								<div className="relative">
 									<select

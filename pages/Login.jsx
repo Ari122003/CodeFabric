@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import auth from "@/Firebase";
 import {
 	FacebookAuthProvider,
@@ -7,23 +7,55 @@ import {
 } from "firebase/auth";
 
 import { addUser } from "@/States/Reducers/UserReducer";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { useRouter } from "next/router";
 
 export default function Login({ toast }) {
 	const dispatch = useDispatch();
 	const router = useRouter();
+	const token = useSelector((state) => state.User.token);
+
+	useEffect(() => {
+		if (token != null) {
+			router.push("/");
+		}
+	}, []);
+
 	const googleSignup = async () => {
 		const provider = new GoogleAuthProvider();
 
 		await signInWithPopup(auth, provider)
 			.then((res) => {
+				newUser(res.user.displayName, res.user.email, res.user.photoURL);
 				dispatch(addUser(res.user.uid));
-				toast("suc", "Successfully signed in");
-				router.push("/");
 			})
 			.catch((err) => {
 				console.log(err.message);
+			});
+	};
+
+	const newUser = async (name, email, image) => {
+		await fetch(`${process.env.NEXT_PUBLIC_API}/api/Signup`, {
+			method: "POST",
+			headers: {
+				"Content-Type": "application/json",
+			},
+			body: JSON.stringify({ name: name, email: email, image: image }),
+		})
+			.then((res) => {
+				return res.json();
+			})
+			.then((res) => {
+				if (res.msg === "Internal server error") {
+					toast("err", res.msg);
+				} else {
+					toast("suc", res.msg);
+
+					router.push("/");
+				}
+			})
+			.catch((err) => {
+				toast("err", err.message);
 			});
 	};
 

@@ -3,22 +3,21 @@ import connect from "@/Middleware";
 
 const handler = async (req, res) => {
 	try {
-		const { name, email } = req.body;
+		const { name, email, image } = req.body;
 
-		let veriefy = await User.findOne({ Email: email }).exec();
+		let verify = await User.findOne({ Email: email }).exec();
 
-		if (veriefy == null) {
-			const newuser = new User({ Name: name, Email: email });
+		if (verify == null) {
+			const newuser = new User({ Name: name, Email: email, Image: image });
+
 			await newuser.save();
-			 
-		
 
-			res.status(200).send("Registered");
+			res.status(200).json({ msg: "Registered successfully" });
 		} else {
-			res.status(200).send("Welcome again");
+			res.status(200).json({ msg: "Welcome again" });
 		}
 	} catch (error) {
-		res.status(500).send("Internal server error");
+		res.status(500).json({ msg: "Internal server error" });
 	}
 };
 

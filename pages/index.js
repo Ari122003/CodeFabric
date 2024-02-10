@@ -9,7 +9,7 @@ import { useRouter } from "next/router";
 
 const inter = Inter({ subsets: ["latin"] });
 
-export default function Home({ Products }) {
+export default function Home() {
 	const router = useRouter();
 	return (
 		<>
@@ -183,12 +183,4 @@ export default function Home({ Products }) {
 	);
 }
 
-export async function getServerSideProps() {
-	if (!mongoose.connections[0].readyState) {
-		await mongoose.connect(process.env.URI);
-	}
 
-	const products = await Product.find().exec();
-
-	return { props: { Products: JSON.parse(JSON.stringify(products)) } };
-}
