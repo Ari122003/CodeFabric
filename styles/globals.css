@@ -27,11 +27,11 @@
 	color: #fc1bfc;
 }
 .icon {
-	color:#8b008b;
+	color: #8b008b;
 }
 
 .icon:hover {
-	color:#ff18ff;
+	color: #ff18ff;
 }
 
 .product {
@@ -41,7 +41,6 @@
 .select {
 	background-color: white;
 	color: #8b008b;
-	
 }
 .option {
 	background-color: white;
@@ -65,10 +64,24 @@
 .banner {
 	background-color: #8b008b;
 }
-.toggle{
+.toggle {
 	color: #8b008b;
 }
 
-.low{
+.low {
 	background-color: #8b008b;
+}
+
+.ban {
+	background-color: #ff05ff;
+}
+.zoom {
+	object-fit: cover;
+
+	max-width: 100%;
+	aspect-ratio: 6/9;
+}
+.zoom:hover {
+	transform: scale(1.2);
+	transition: ease all 0.2s;
 }

@@ -13,21 +13,58 @@ export default function Home() {
 	const router = useRouter();
 	return (
 		<>
-			<marquee behavior="scroll" direction="left" className="my-2">
-				<div className="md:text-2xl w-[40rem] md:w-[60rem] h-16 items-center flex justify-center banner over rounded-lg text-white font-bold">
-					<p className="">
-						Welcome to Bongwear!!!!...বাংলার ঐতিহ্য , বাংলার সংস্কৃতি , বাংলার
-						পরিধান
+			<div
+				id="sticky-banner"
+				tabindex="-1"
+				class=" top-0 start-0 z-50 flex justify-between ban p-4 border-b border-gray-200 bg-gray-50 dark:bg-gray-700 dark:border-gray-600">
+				<div class="flex items-center mx-auto">
+					<p class="flex items-center text-sm font-normal text-black dark:text-gray-400">
+						<span class="inline-flex p-1 me-3 bg-gray-200 rounded-full dark:bg-gray-600 w-6 h-6 items-center justify-center flex-shrink-0">
+							<svg
+								class="w-3 h-3 text-[#8b008b] dark:text-gray-400"
+								aria-hidden="true"
+								xmlns="http://www.w3.org/2000/svg"
+								fill="currentColor"
+								viewBox="0 0 18 19">
+								<path d="M15 1.943v12.114a1 1 0 0 1-1.581.814L8 11V5l5.419-3.871A1 1 0 0 1 15 1.943ZM7 4H2a2 2 0 0 0-2 2v4a2 2 0 0 0 2 2v5a2 2 0 0 0 2 2h1a2 2 0 0 0 2-2V4ZM4 17v-5h1v5H4ZM16 5.183v5.634a2.984 2.984 0 0 0 0-5.634Z" />
+							</svg>
+							<span class="sr-only">Light bulb</span>
+						</span>
+						<span className="text-xl">
+							Welcome to Bongwear!!!!...বাংলার ঐতিহ্য , বাংলার সংস্কৃতি , বাংলার
+							পরিধান
+						</span>
 					</p>
 				</div>
-			</marquee>
+			</div>
 
-			<div className="h-56  md:h-[32rem] my-5 ">
-				<Carousel>
-					<img src="ad1.jpg" className="" alt="..." />
-					<img src="ad2.jpg" alt="..." />
-					<img src="ad3.jpg" alt="..." />
-				</Carousel>
+			{/* Heading */}
+
+			<div class="grid gap-4 mt-2">
+				<div className="flex justify-center">
+					<img
+						class=" max-h-[32rem] w-[32rem]  rounded-lg"
+						src="back.jpeg"
+						alt=""
+					/>
+				</div>
+				<div class="grid grid-cols-5 gap-4 ">
+					<div>
+						<img class="md:h-full  h-auto  rounded-lg zoom" src="punj.jpg" alt="" />
+					</div>
+					<div>
+						<img class=" md:h-full h-auto rounded-lg zoom" src="saree.jpeg" alt="" />
+					</div>
+					<div>
+						<img class="md:h-full  h-auto rounded-lg zoom" src="ts.jpeg" alt="" />
+					</div>
+					<div>
+						<img class=" md:h-full h-auto rounded-lg zoom" src="bag.jpeg" alt="" />
+					</div>
+					<div>
+						<img class="md:h-full  h-auto rounded-lg zoom" src="mug.jpeg" alt="" />
+					</div>
+				</div>
 			</div>
 
 			<section class="text-gray-600 body-font">
@@ -147,9 +184,9 @@ export default function Home() {
 							</Grid>
 							<Grid item xs={6}>
 								<img
-								onClick={()=>{
-									router.push("/Panjabi")
-								}}
+									onClick={() => {
+										router.push("/Panjabi");
+									}}
 									alt="gallery"
 									class=" inset-0 rounded-md  object-cover object-center"
 									src="pb.jpg"
@@ -158,9 +195,9 @@ export default function Home() {
 							</Grid>
 							<Grid item xs={6}>
 								<img
-								onClick={()=>{
-									router.push("/Saree")
-								}}
+									onClick={() => {
+										router.push("/Saree");
+									}}
 									alt="gallery"
 									class=" inset-0 rounded-md  object-cover object-center"
 									src="sr.jpg"
@@ -182,5 +219,3 @@ export default function Home() {
 		</>
 	);
 }
-
-

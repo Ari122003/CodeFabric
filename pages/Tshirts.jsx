@@ -78,6 +78,8 @@ export async function getServerSideProps() {
 		await mongoose.connect(process.env.URI);
 	}
 
+	
+
 	const products = await Product.find({ Category: "Tshirt" }).exec();
 
 	const tshirts = {};
